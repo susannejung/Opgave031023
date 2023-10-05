@@ -1,10 +1,8 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
         Scanner in=new Scanner(System.in);
         int[] tabel=new int[10];
@@ -16,16 +14,18 @@ public class Main {
         laegTalTil(tabel,10,20);
         skrivTilFil(tabel,10);*/
 
-        int antalPersoner=0;
+        /*int antalPersoner=0;
         int[] nr=new int[10];
         String[] navne= new String[10];
         double[] kr=new double[10];
         antalPersoner=indPersonerFraFil(nr,navne,kr);
-        udskrivPersoner(nr,navne,kr,antalPersoner);
-
-
-
-    }
+        udskrivPersoner(nr,navne,kr,antalPersoner);*/
+        System.out.println("Indtast id, navn og beløb: ");
+        int id=in.nextInt();
+        String navn=in.next();
+        double k=in.nextDouble();
+        append(id,navn,k);
+   }
 
     public static int indPersonerFraFil(int[] id,String[] n,double[] k) throws FileNotFoundException {
         int i=0;
@@ -38,6 +38,12 @@ public class Main {
             i++;
         }
         return i;
+    }
+
+    public static void append(int id,String navn,double k) throws IOException {
+        FileWriter ud=new FileWriter("Persondata.txt",true);
+        ud.write(" "+id+" "+navn+" "+k);
+        ud.close();
     }
 
     public static void udskrivPersoner(int[] id,String[] n,double[] k,int antal){
