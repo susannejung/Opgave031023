@@ -11,13 +11,42 @@ public class Main {
         /*System.out.println("Indtast 10 heltal: ");
         for(int i=0;i<10;i++)
             tabel[i]=in.nextInt();*/
-        indFraFil(tabel,10);
+       /* indFraFil(tabel,10);
         udskriv(tabel,10);
         laegTalTil(tabel,10,20);
-        skrivTilFil(tabel,10);
+        skrivTilFil(tabel,10);*/
+
+        int antalPersoner=0;
+        int[] nr=new int[10];
+        String[] navne= new String[10];
+        double[] kr=new double[10];
+        antalPersoner=indPersonerFraFil(nr,navne,kr);
+        udskrivPersoner(nr,navne,kr,antalPersoner);
+
 
 
     }
+
+    public static int indPersonerFraFil(int[] id,String[] n,double[] k) throws FileNotFoundException {
+        int i=0;
+        File inFil=new File("Persondata.txt");
+        Scanner in=new Scanner(inFil);
+        while(in.hasNext()){
+            id[i]=in.nextInt();
+            n[i]=in.next();
+            k[i]=in.nextDouble();
+            i++;
+        }
+        return i;
+    }
+
+    public static void udskrivPersoner(int[] id,String[] n,double[] k,int antal){
+        for(int i=0;i<3;i++)
+            System.out.println(id[i]+" "+n[i]+" "+k[i]);
+    }
+
+
+
 
     public static void udskriv(int [] a,int antal){
         for(int i=0;i<antal;i++)
